@@ -1,10 +1,13 @@
 import React from 'react'
-import Banner from './Banner'
+import Banner from './section/Banner'
+import Category from './section/Category'
+
 
 const Home = () => {
   return (
     <>
     <Banner/>
+    <Category/>
     </>
   )
 }
