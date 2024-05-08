@@ -38,7 +38,7 @@ const Banner = () => {
                 pagination={{ clickable: true }}
             >
             <SwiperSlide onMouseOver={handleCardOver} onMouseLeave={handleCardLeave}>
-                  <div className="h-[600px]  bg-no-repeat bg-cover bg-center group" style={{ backgroundImage: `url(${banner2})` }}>
+                  <Div className="h-[600px]  bg-no-repeat bg-cover bg-center group" style={{ backgroundImage: `url(${banner2})` }}>
                   <Div className='bg-slate-950/50 h-full text-white flex justify-center items-center flex-col'>
                             <h6 className="uppercase rounded-full bg-slate-900 text-white px-4 py-1 text-sm transition-all duration-500 group-hover:bg-red-600 ">Click Here</h6>
 
@@ -46,10 +46,10 @@ const Banner = () => {
 
                             <span className='uppercase font-semibold pt-2'>Contract Me <i> +880 1905-00715</i></span>
                         </Div>
-                  </div>
+                  </Div>
             </SwiperSlide>  
             <SwiperSlide onMouseOver={handleCardOver} onMouseLeave={handleCardLeave}>
-                  <div className="h-[600px]  bg-no-repeat bg-cover bg-center group" style={{ backgroundImage: `url(${banner3})` }}>
+                  <Div className="h-[600px]  bg-no-repeat bg-cover bg-center group" style={{ backgroundImage: `url(${banner3})` }}>
                   <Div className='bg-slate-950/50 h-full text-white flex justify-center items-center flex-col'>
                             <h6 className="uppercase rounded-full bg-slate-900 text-white px-4 py-1 text-sm transition-all duration-500 group-hover:bg-red-600 ">Click Here</h6>
 
@@ -57,17 +57,17 @@ const Banner = () => {
 
                             <span className='uppercase font-semibold pt-2'>Contract Me <i> +880 1905-00715</i></span>
                         </Div>
-                  </div>
+                  </Div>
             </SwiperSlide>  
             <SwiperSlide onMouseOver={handleCardOver} onMouseLeave={handleCardLeave}>
-                  <div className="h-[600px]  bg-no-repeat bg-cover bg-center group" style={{ backgroundImage: `url(${banner1})` }}>
+                  <Div className="h-[600px]  bg-no-repeat bg-cover bg-center group" style={{ backgroundImage: `url(${banner1})` }}>
                   <Div className='bg-slate-950/50 h-full text-white flex justify-center items-center flex-col'>
                             <h6 className="uppercase rounded-full bg-slate-900 text-white px-4 py-1 text-sm transition-all duration-500 group-hover:bg-red-600 ">Click Here</h6>
 
                             <h3 className={`font-bold py-4 font-primary text-white text-6xl transition-all after:transition-all after:duration-500 relative after:absolute after:w-0 after:h-1 after:bottom-[0px] after:left-0 after:content-[''] after:bg-white ${card && "after:w-full"}`}>Explore Your Content</h3>
                             <span className='uppercase font-semibold pt-2'>Contract Me <i> +880 1905-00715</i></span>
                         </Div>
-                  </div>
+                  </Div>
             </SwiperSlide>  
         </Swiper>
      

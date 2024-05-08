@@ -11,6 +11,7 @@ export default {
       },
       fontFamily: {
         'roboto': ["Roboto, sans-serif"],
+         primary: ["Karla"],
       },
       translate: {
         topMiddle: '-50%',

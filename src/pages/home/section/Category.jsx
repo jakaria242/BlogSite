@@ -6,7 +6,7 @@ import pic2 from '../../../assets/images/pic2.jpg'
 import pic3 from '../../../assets/images/pic3.jpg'
 import pic4 from '../../../assets/images/pic4.jpg'
 import pic5 from '../../../assets/images/pic6.jpg'
-import pic6 from '../../../assets/images/pic7.jpg'
+// import pic6 from '../../../assets/images/pic7.jpg'
 import Marquee from "react-fast-marquee";
 
 const Category = () => {

@@ -1,6 +1,8 @@
 import React from 'react'
 import Banner from './section/Banner'
 import Category from './section/Category'
+import BlogPart from './section/BlogPart'
+
 
 
 const Home = () => {
@@ -8,6 +10,7 @@ const Home = () => {
     <>
     <Banner/>
     <Category/>
+    <BlogPart/>
     </>
   )
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Div = ({className, children}) => {
+const Div = ({className, children, onMouseOver, onMouseLeave, style}) => {
   return (
-    <div className={className}>{children}</div>
+    <div style={style} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} className={className}>{children}</div>
   )
 }
 
