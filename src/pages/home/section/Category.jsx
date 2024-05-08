@@ -12,6 +12,7 @@ import Marquee from "react-fast-marquee";
 const Category = () => {
   return (
     <Div className="py-8">
+      <Div>
         <Marquee
         pauseOnHover={true}
         >
@@ -24,6 +25,22 @@ const Category = () => {
            {/* <CategoryCard link="/" source={pic6} text="Blog"/> */}
         </Div>
         </Marquee>
+      </Div>
+      <Div className="mt-[30px]">
+        <Marquee
+        pauseOnHover={true}
+        direction={'right'}
+        >
+        <Div className=" flex justify-between gap-[43px]">
+           <CategoryCard link="/" source={pic1} text="Blog"/>
+           <CategoryCard link="/" source={pic2} text="Blog"/>
+           <CategoryCard link="/" source={pic3} text="Blog"/>
+           <CategoryCard link="/" source={pic4} text="Blog"/>
+           <CategoryCard link="/" source={pic5} text="Blog"/>
+           {/* <CategoryCard link="/" source={pic6} text="Blog"/> */}
+        </Div>
+        </Marquee>
+      </Div>
     </Div>
   )
 }

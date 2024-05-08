@@ -29,7 +29,7 @@ const BlogPart = () => {
     }
 
   return (
-    <Div className="container mx-auto grid grid-cols-12  gap-12 items-start">
+    <Div className="container mx-auto grid grid-cols-12 pb-[40px] gap-12 items-start">
     {/*============================== left part star =========================== */}
       <Div className="grid col-span-8 ">
          <Div className='border-b-[1px] border-slate-400/50 mb-14'>
