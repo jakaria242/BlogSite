@@ -11,8 +11,12 @@ import category4 from '../../assets/images/catrgory4.jpg'
 import Div from '../../utilities/Div';
 import Ul from '../../utilities/Ul';
 import List from '../../utilities/List';
+import { Modal } from 'flowbite';
+
 
 const Navbar = () => {
+
+  
   return (
     <nav className='w-full	py-4 bg-[#0d0d29]'>
       <Div className="container mx-[auto] grid grid-cols-3	items-center">
@@ -181,8 +185,12 @@ const Navbar = () => {
           </Ul>
         </Div>
         <Div className="flex items-center justify-end gap-[30px]">
+            <Div>
             <IoSearch  className='text-2xl text-white cursor-pointer hover:text-[yellow] transition-all'/>
-            <FaUserCircle className='text-2xl	 text-white cursor-pointer hover:text-[yellow] transition-all'/>
+            </Div>
+            <Div className="">
+            <FaUserCircle  className='text-2xl	 text-white cursor-pointer hover:text-[yellow] transition-all'/>
+            </Div>
         </Div>
       </Div>
     </nav>

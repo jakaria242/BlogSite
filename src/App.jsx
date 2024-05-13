@@ -14,11 +14,14 @@ import BlogInfo from "./pages/blogInfo/BlogInfo";
 import Contract from "./pages/contract/Contract";
 import Dashboard from "./pages/dashboard/Dashboard";
 import ErrorPage from "./pages/errorPage/ErrorPage";
+import Registration from "./pages/registration/Registration";
+import Login from "./pages/login/Login";
 
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route element={<RootLayout/>}>
+       <Route>
+        <Route element={<RootLayout/>}>
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/category" element={<Category/>}/>
@@ -26,8 +29,11 @@ function App() {
         <Route path="/bloginfo/:id" element={<BlogInfo/>}/>
         <Route path="/contract" element={<Contract/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
-        <Route path="/*" element={<ErrorPage/>}/>
+        <Route path="/registration" element={<Registration/>}/>
+        <Route path="/login" element={<Login/>}/>
       </Route>
+        <Route path="*" element={<ErrorPage/>}/>
+       </Route>
     )
   );
 

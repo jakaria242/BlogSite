@@ -25,16 +25,16 @@ const Footer = () => {
 
                 <Div className='flex'>
                     <input onChange={(e) => handlesubscribe(e)} id="inputField" className='p-4 text-white rounded-l-2xl w-44 md:w-80 bg-slate-800 outline-none' type="email" placeholder='Enter Your Email' value={subscribe} />
+                    
                     <p className="rounded-r-2xl bg-slate-800 px-4 flex justify-center items-center gap-4 border-l-[.3px] border-white">
                         <Link onClick={handleSubscribe} className='flex gap-3 justify-center items-center'> <GrSend /> subscribe</Link>
                     </p>
                 </Div>
                 <Div className="flex items-center">
-                    <input onChange={(e) => handlesubscribe(e)} checked id="checked-checkbox" type="checkbox" value={subscribe} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                <input onChange={(e) => handlesubscribe(e)} checked id="checked-checkbox" type="checkbox" value={subscribe} className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+  
 
-                    <label htmlFor="checked-checkbox" className="ms-2 hidden sm:block font-medium text-gray-900 dark:text-gray-300">I agree that my submitted data is being collected and stored.</label>
-
-                    <label htmlFor="checked-checkbox" className="ms-2 font-medium block sm:hidden text-gray-900 dark:text-gray-300">I agree on the terms</label>
+                    <label htmlFor="checked-checkbox" className="ms-2 hidden sm:block font-medium  dark:text-gray-300">I agree that my submitted data is being collected and stored.</label>
                 </Div>
             </Div>
                <Div className='bg-gray-950/90'>
