@@ -8,7 +8,6 @@ import {
 import RootLayout from "./components/layout/RootLayout";
 import Home from "./pages/home/Home";
 import About from "./pages/about/About";
-import Category from "./pages/category/Category";
 import Blog from "./pages/blog/Blog";
 import BlogInfo from "./pages/blogInfo/BlogInfo";
 import Contract from "./pages/contract/Contract";
@@ -16,6 +15,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import ErrorPage from "./pages/errorPage/ErrorPage";
 import Registration from "./pages/registration/Registration";
 import Login from "./pages/login/Login";
+import AllBlogs from "./pages/loder/allBlogs/AllBlogs";
 
 function App() {
   const router = createBrowserRouter(
@@ -24,7 +24,7 @@ function App() {
         <Route element={<RootLayout/>}>
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
-        <Route path="/category" element={<Category/>}/>
+        <Route path="/allblogs" element={<AllBlogs/>}/>
         <Route path="/blog" element={<Blog/>}/>
         <Route path="/bloginfo/:id" element={<BlogInfo/>}/>
         <Route path="/contract" element={<Contract/>}/>

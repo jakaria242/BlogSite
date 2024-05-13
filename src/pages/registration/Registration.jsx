@@ -11,7 +11,6 @@ const Registration = () => {
 
   const initialValues = {
     fullName: '',
-    number: '',
     email: '',
     password: '',
     conPass: '',
@@ -21,8 +20,8 @@ const Registration = () => {
     initialValues: initialValues,
     validationSchema : validationSchema,
     onSubmit: (values, action) => {
-      console.log(values);
       action.resetForm()
+      console.log(values);
     },
   });
 
@@ -39,12 +38,6 @@ const Registration = () => {
                <Input className="w-full outline-none	p-3 rounded-lg" name="fullName" type="text" placeholder="Enter Your Full Name" onChange={formik.handleChange} value={formik.values.fullName}/>
                {formik.touched.fullName && formik.errors.fullName ? (
                   <p className='text-[white] text-base font-normal font-roboto'>{formik.errors.fullName}</p>
-                ) : null}
-               </Div>
-               <Div>
-               <Input className="w-full outline-none	p-3 rounded-lg" name="number"   type="text" placeholder="Enter Your Number" onChange={formik.handleChange} value={formik.values.number}/>
-               {formik.touched.number && formik.errors.number ? (
-                  <p className='text-[white] text-base font-normal font-roboto'>{formik.errors.number}</p>
                 ) : null}
                </Div>
                 <Div>

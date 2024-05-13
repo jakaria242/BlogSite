@@ -9,10 +9,6 @@ export const  validationSchema = Yup.object({
               .max(15, 'Must be 15 characters or less')
               .min(5,   "Must be 5 characters or above")
               .required('Please enter your Full Name'),
-    number: Yup.string()
-              .max(11, 'Must be 11 characters or less')
-              .min(11,   "Must be 11 characters or above")
-              .required('Please enter your Number'),
     email: Yup.string()
               .email('Invalid email address')
               .matches(mailFormat, "Invalid email address")
