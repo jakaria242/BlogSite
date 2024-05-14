@@ -28,7 +28,7 @@ const Login = () => {
     
            <Div className="w-[400px] mx-auto flex items-center justify-center flex-col mt-[20px]  py-4 px-6  bg-[teal] rounded-lg	gap-5">
                 <Heading level="6" className="font-bold text-3xl text-white font-roboto">
-                  Login
+                  Admin Login
                 </Heading>
                 <form className='w-full flex flex-col gap-5 ' onSubmit={formik.handleSubmit}>
                     <Div>
@@ -45,7 +45,7 @@ const Login = () => {
                      </Div>
                   <Button className="w-full bg-[#72ff56]	text-[black] mt-[15px] text-xl p-4 rounded-xl font-bold font-roboto outline-none" text="Login" type="submit"/>
                 </form>
-                <span className='font-roboto text-lg font-normal text-white'>Already have an account? <Link className='text-[#272926] font-medium' to="/registration"> Registration</Link></span>
+                <span className='font-roboto text-lg font-normal text-white'>Create a new account? <Link className='text-[#272926] font-medium' to="/registration"> Registration</Link></span>
            </Div>
       )
     }
