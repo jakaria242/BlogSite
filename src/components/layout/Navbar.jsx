@@ -195,8 +195,8 @@ const Navbar = () => {
 
               <Div className='absolute z-10	bg-[rgba(255,255,255,0.83)] min-w-[250px] max-w-[350px] py-[20px] px-[30px] transition-all duration-500 mt-[40px] ease-in-out	group-hover:mt-[5px] opacity-0 invisible group-hover:visible group-hover:opacity-100 left-[65%]	translate-x-leftMiddle'>
                 <Ul className='text-center	'>
-                  <List to="/" style="text-[#555555] inline-block text-[15px] hover:transition-all  hover:duration-900 hover:text-[red] font-medium  relative after:absolute after:content-[' ] after:w-0 after:h-[2px]  after:bottom-[-2px] after:left-0 hover:after:w-full after:transition-all after:duration-300 after:bg-[red] duration-300" text="Login"/>
-                  <List to="/" style="text-[#555555] inline-block	pt-[10px] text-[15px] hover:transition-all  hover:duration-900 hover:text-[red] font-medium" text="Register"/>
+                  <List to="/login" style="text-[#555555] inline-block text-[15px] hover:transition-all  hover:duration-900 hover:text-[red] font-medium  relative after:absolute after:content-[' ] after:w-0 after:h-[2px]  after:bottom-[-2px] after:left-0 hover:after:w-full after:transition-all after:duration-300 after:bg-[red] duration-300" text="Login"/>
+                  <List to="/registration" style="text-[#555555] inline-block	pt-[10px] text-[15px] hover:transition-all  hover:duration-900 hover:text-[red] font-medium" text="Register"/>
                   <List to="/" style="text-[#555555] inline-block	pt-[10px] text-[15px] hover:transition-all  hover:duration-900 hover:text-[red] font-medium" text="404 Page"/>
                 </Ul>
               </Div>

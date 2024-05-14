@@ -16,6 +16,7 @@ import ErrorPage from "./pages/errorPage/ErrorPage";
 import Registration from "./pages/registration/Registration";
 import Login from "./pages/login/Login";
 import AllBlogs from "./pages/loder/allBlogs/AllBlogs";
+import CreateBlogPage from "./pages/createBlogPage/CreateBlogPage";
 
 function App() {
   const router = createBrowserRouter(
@@ -29,6 +30,7 @@ function App() {
         <Route path="/bloginfo/:id" element={<BlogInfo/>}/>
         <Route path="/contract" element={<Contract/>}/>
         <Route path="/dashboard" element={<Dashboard/>}/>
+        <Route path="/createblogpost" element={<CreateBlogPage/>}/>
         <Route path="/registration" element={<Registration/>}/>
         <Route path="/login" element={<Login/>}/>
       </Route>

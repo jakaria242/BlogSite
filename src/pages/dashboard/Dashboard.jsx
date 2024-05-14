@@ -20,7 +20,7 @@ const Dashboard = () => {
                         <Heading level="3" className="font-semibold text-[black] lowercase">jakaria.dev242@gmail.com</Heading>
                         <Heading level="3"  className="font-semibold text-[black]"><span>Total Blog : </span>  15  </Heading>
                         <Div className=" flex gap-2 mt-2">
-                            <Link to={'#'}>
+                            <Link to={'/createblogpost'}>
                                 <Div className=" mb-2 ">
                                     <Button className='px-8 py-2 rounded-2xl bg-[rgb(30,41,59)] text-white' text="Create Blog"/>
                                 </Div>
