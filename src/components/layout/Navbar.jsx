@@ -197,7 +197,7 @@ const Navbar = () => {
                 <Ul className='text-center	'>
                   <List to="/login" style="text-[#555555] inline-block text-[15px] hover:transition-all  hover:duration-900 hover:text-[red] font-medium  relative after:absolute after:content-[' ] after:w-0 after:h-[2px]  after:bottom-[-2px] after:left-0 hover:after:w-full after:transition-all after:duration-300 after:bg-[red] duration-300" text="Login"/>
                   <List to="/registration" style="text-[#555555] inline-block	pt-[10px] text-[15px] hover:transition-all  hover:duration-900 hover:text-[red] font-medium" text="Register"/>
-                  <List to="/" style="text-[#555555] inline-block	pt-[10px] text-[15px] hover:transition-all  hover:duration-900 hover:text-[red] font-medium" text="404 Page"/>
+                  <List to="*" style="text-[#555555] inline-block	pt-[10px] text-[15px] hover:transition-all  hover:duration-900 hover:text-[red] font-medium" text="404 Page"/>
                 </Ul>
               </Div>
           </li>
