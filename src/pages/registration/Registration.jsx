@@ -6,8 +6,15 @@ import Button from '../../utilities/Button'
 import Heading from '../../utilities/Heading'
 import { useFormik } from 'formik';
 import { validationSchema } from '../../fromValidation/RegisValidation'
+import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateProfile  } from "firebase/auth";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from "react-router-dom";
 
 const Registration = () => {
+
+  const auth = getAuth();
+  const navigate = useNavigate();
 
   const initialValues = {
     fullName: '',
@@ -20,15 +27,43 @@ const Registration = () => {
     initialValues: initialValues,
     validationSchema : validationSchema,
     onSubmit: (values, action) => {
-      action.resetForm()
-      console.log(values);
-    },
+      createUserWithEmailAndPassword(auth, values.email, values.password)
+     .then((userCredential) => {
+       sendEmailVerification(auth.currentUser).then(() => {
+        //  navigate("/login")
+        updateProfile(auth.currentUser, {
+          displayName: values.fullName ,
+          email:  values.email,
+           photoURL: 'https://cdn-icons-png.flaticon.com/128/3135/3135715.png',
+        })
+     });
+    }).catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      if (errorCode == "auth/email-already-in-use") {
+        toast.error('email alredy existed', {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // transition: Bounce,
+          });
+      }
+      // ..
+     });
+     action.resetForm()
+   },
   });
 
 
 
   return (
 
+    <>
        <Div className="w-[400px] mx-auto flex items-center justify-center flex-col mt-[20px]  py-4 px-6  bg-[teal] rounded-lg	gap-5">
             <Heading level="6" className="font-bold text-3xl text-white font-roboto">
               Registration
@@ -62,6 +97,20 @@ const Registration = () => {
             </form>
             <span className='font-roboto text-lg font-normal text-white'>Already have an account? <Link className='text-[#272926] font-medium' to="/login"> Login</Link></span>
        </Div>
+       <ToastContainer
+           position="top-right"
+           autoClose={5000}
+           hideProgressBar={false}
+           newestOnTop={false}
+           closeOnClick
+           rtl={false}
+           pauseOnFocusLoss
+           draggable
+           pauseOnHover
+           theme="dark"
+          //  transition: Bounce,
+        />
+    </>
   )
 }
 
