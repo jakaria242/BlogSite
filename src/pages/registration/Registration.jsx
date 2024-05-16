@@ -10,9 +10,11 @@ import { getAuth, createUserWithEmailAndPassword, sendEmailVerification, updateP
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import { getDatabase, ref, set } from "firebase/database";
 
 const Registration = () => {
 
+  const db = getDatabase();
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -30,11 +32,16 @@ const Registration = () => {
       createUserWithEmailAndPassword(auth, values.email, values.password)
      .then((userCredential) => {
        sendEmailVerification(auth.currentUser).then(() => {
-        //  navigate("/login")
         updateProfile(auth.currentUser, {
           displayName: values.fullName ,
-          email:  values.email,
            photoURL: 'https://cdn-icons-png.flaticon.com/128/3135/3135715.png',
+        }).then(()=>{
+          set(ref(db, 'users/' + userCredential.user.uid), {
+            name: userCredential.user.displayName,
+            email: userCredential.user.email,
+            profileimg : userCredential.user.photoURL
+          });
+              navigate("/login")
         })
      });
     }).catch((error) => {

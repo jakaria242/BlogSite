@@ -18,6 +18,9 @@ import Login from "./pages/login/Login";
 import AllBlogs from "./pages/loder/allBlogs/AllBlogs";
 import CreateBlogPage from "./pages/createBlogPage/CreateBlogPage";
 
+
+
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
@@ -38,6 +41,7 @@ function App() {
        </Route>
     )
   );
+
 
   return (
     <>

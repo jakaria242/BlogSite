@@ -14,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 
+
 const style = {
   position: 'absolute',
   top: '40%',
@@ -51,9 +52,21 @@ const Login = () => {
           signInWithEmailAndPassword(auth, values.email, values.password)
           .then((userCredential) => {
             if (userCredential.user.emailVerified) {
-              // localStorage.setItem("user", JSON.stringify(userCredential.user))
-
-              navigate("/dashboard")
+              localStorage.setItem("admin", JSON.stringify(userCredential.user))
+              toast.success('Logoin sucessful', {
+                position: "top-right",
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                // transition: Bounce,
+                })
+                setTimeout(()=>{
+                  navigate("/dashboard")
+              },1000)
             }else{
               signOut(auth)
               toast.error('Please verify your email', {
@@ -91,7 +104,7 @@ const Login = () => {
       });
 
 
-
+    
       //  forgot validation
 
       let emailregex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -123,7 +136,7 @@ const Login = () => {
     }
     
      }
-    
+
     
     
       return (
