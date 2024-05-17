@@ -15,9 +15,9 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import ErrorPage from "./pages/errorPage/ErrorPage";
 import Registration from "./pages/registration/Registration";
 import Login from "./pages/login/Login";
-import AllBlogs from "./pages/loder/allBlogs/AllBlogs";
+import AllBlogs from "./pages/allBlogs/AllBlogs";
 import CreateBlogPage from "./pages/createBlogPage/CreateBlogPage";
-
+import MyState from "./context/MyState";
 
 
 
@@ -45,7 +45,10 @@ function App() {
 
   return (
     <>
+    <MyState>
+
       <RouterProvider router={router} />
+    </MyState>
     </>
   )
 }

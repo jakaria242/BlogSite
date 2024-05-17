@@ -1,10 +1,10 @@
 import React from 'react'
-import Div from '../../../utilities/Div'
-import Heading from '../../../utilities/Heading'
-import tec1 from '../../../assets/images/tec1.jpg'
-import tec2 from '../../../assets/images/tec2.jpg'
-import tec3 from '../../../assets/images/tec3.jpg'
-import BlogPostCard from '../../../components/BlogPostCard'
+import Div from '../../utilities/Div'
+import Heading from '../../utilities/Heading'
+import tec1 from '../../assets/images/tec1.jpg'
+import tec2 from '../../assets/images/tec2.jpg'
+import tec3 from '../../assets/images/tec3.jpg'
+import BlogPostCard from '../../components/BlogPostCard'
 
 const AllBlogs = () => {
   return (

@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../utilities/Button'
-import tec3 from '../../assets/images/tec3.jpg'
+// import tec3 from '../../assets/images/tec3.jpg'
 import Image from '../../utilities/Image'
 import Div from '../../utilities/Div'
 import Heading from '../../utilities/Heading'
@@ -11,9 +11,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useSelector, useDispatch } from 'react-redux'
 import { loginuser } from '../../slices/userSlice'
+import myContext from '../../context/myContext'
 
 const Dashboard = () => {
     
+    const context = useContext(myContext)
+    const { getAllBlog } = context;
+    // console.log(getAllBlog);
+
     const dispatch = useDispatch();
     const auth = getAuth();
     const user = auth.currentUser
@@ -106,42 +111,59 @@ const Dashboard = () => {
                                     </tr>
                                 </thead>
                                 {/* tbody  */}
-                                <tbody>
-                                    <tr className=" border-b-2 bg-[#fff]">
+                                {
+                                        getAllBlog.length > 0 
+                                        ?
+                                        <>
+                                        {
+                                            getAllBlog.map((item, index)=>{
+                                                const {thumbnail, date} = item;
+                                                // console.log(item);
+                                                return(
+                                                    <tbody key={index}>
+                                                    <tr className=" border-b-2 bg-[#fff]">
+                
+                                                        {/* S.No   */}
+                                                        <td  className="px-6 py-4 text-[black]">
+                                                            {index + 1}.
+                                                        </td>
+                
+                                                        {/* Blog Thumbnail  */}                                    
+                                                        <th scope="row" className="px-6 py-4 font-medium text-[black]">
+                                                            {/* thumbnail  */}
+                                                            <Image className="w-16 rounded-lg" source={thumbnail} alt="thumbnail"/>
+                                                        </th>
+                
+                                                        {/* Blog Title  */}
+                                                        <td className="px-6 py-4 text-[black] font-bold">
+                                                            {item.blogs.title}
+                                                        </td>
+                
+                                                        {/* Blog Category  */}
+                                                        <td className="px-6 py-4 text-[black] font-medium">
+                                                            {item.blogs.category}
+                                                        </td>
+                
+                                                        {/* Blog Date  */}
+                                                        <td className="px-6 py-4 text-[black] font-normal">
+                                                            {date}
+                                                        </td>
+                
+                                                        {/* Delete Blog  */}
+                                                        <td className="px-6 py-4 text-[black]">
+                                                          <Button className="px-4 py-1 rounded-lg text-white font-bold bg-red-500" text="Delet"/>
+                                                        </td>
+                
+                                                    </tr>
+                                                </tbody>
+                                                )
+                                            })
+                                        }
+                                        </>
+                                        :
+                                        <h2>Not Found</h2>
+                                }
 
-                                        {/* S.No   */}
-                                        <td  className="px-6 py-4 text-[black]">
-                                            {'1.'}
-                                        </td>
-
-                                        {/* Blog Thumbnail  */}                                    
-                                        <th scope="row" className="px-6 py-4 font-medium text-[black]">
-                                            {/* thumbnail  */}
-                                            <Image className="w-16 rounded-lg" source={tec3} alt="thumbnail"/>
-                                        </th>
-
-                                        {/* Blog Title  */}
-                                        <td className="px-6 py-4 text-[black]">
-                                            {'React Introduction'}
-                                        </td>
-
-                                        {/* Blog Category  */}
-                                        <td className="px-6 py-4 text-[black]">
-                                            {'reactjs'}
-                                        </td>
-
-                                        {/* Blog Date  */}
-                                        <td className="px-6 py-4 text-[black]">
-                                            {'Jul 25, 2023'}
-                                        </td>
-
-                                        {/* Delete Blog  */}
-                                        <td className="px-6 py-4 text-[black]">
-                                          <Button className="px-4 py-1 rounded-lg text-white font-bold bg-red-500" text="Delet"/>
-                                        </td>
-
-                                    </tr>
-                                </tbody>
                             </table>
                         </Div>
                     </Div>

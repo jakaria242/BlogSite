@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Div from '../../utilities/Div'
 import { TypeAnimation } from 'react-type-animation';
 import BlogPostCard from '../../components/BlogPostCard';
@@ -6,10 +6,18 @@ import tec1 from '../../assets/images/tec1.jpg'
 import tec2 from '../../assets/images/tec2.jpg'
 import tec3 from '../../assets/images/tec3.jpg'
 import Button from '../../utilities/Button';
+import myContext from '../../context/myContext';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const Blog = () => {
+
+
+  const context = useContext(myContext)
+  const {getAllBlog} = context;
+  const navigate = useNavigate()
+
   return (
  <>
   <Div className="h-[600px]  bg-no-repeat bg-cover bg-center group" style={{ backgroundImage: `url(https://img.freepik.com/premium-photo/wooden-mahogany-blog-concept-creative-art-poster_107173-66982.jpg?w=826)` }}>
@@ -25,9 +33,28 @@ const Blog = () => {
    </Div>
    <Div className="py-8">
     <Div className="container mx-auto flex justify-around gap-[35px]">
-      <BlogPostCard sorce={tec1} spantxt="13 May 2024" titletxt="React Introduction" discriptxt="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est blanditiis, nihil..."/>
-      <BlogPostCard sorce={tec2} spantxt="13 May 2024" titletxt="React Introduction" discriptxt="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est blanditiis, nihil..."/>
-      <BlogPostCard sorce={tec3} spantxt="13 May 2024" titletxt="React Introduction" discriptxt="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est blanditiis, nihil..."/>
+      {
+        getAllBlog.length > 0 
+        ?
+        <>
+        {
+          getAllBlog.map((item, index)=>{
+            const {thumbnail, date, id} = item
+            
+            return(
+              <BlogPostCard key={index} onClick={()=>navigate(`/bloginfo/${id}`)} sorce={thumbnail} spantxt={date} titletxt={item.blogs.title} discriptxt="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est blanditiis, nihil..."/>
+            )
+
+          })
+        }
+        </>
+        :
+        <h3>Not Found</h3>
+      }
+
+
+      {/* <BlogPostCard sorce={tec2} spantxt="13 May 2024" titletxt="React Introduction" discriptxt="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est blanditiis, nihil..."/>
+      <BlogPostCard sorce={tec3} spantxt="13 May 2024" titletxt="React Introduction" discriptxt="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est blanditiis, nihil..."/> */}
     </Div>
    </Div>
    <Div className="flex justify-center mt-6 mb-[80px]">
