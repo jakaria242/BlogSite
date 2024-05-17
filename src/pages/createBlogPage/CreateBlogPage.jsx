@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+
 import { Editor } from '@tinymce/tinymce-react';
 import React, { useState, useRef, useEffect } from 'react';
 import { BsFillArrowLeftCircleFill } from "react-icons/bs"
@@ -8,15 +8,24 @@ import Heading from '../../utilities/Heading';
 import Div from '../../utilities/Div';
 import { useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom";
+import { Timestamp, addDoc, collection } from 'firebase/firestore';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { fireDb, storage } from '../../config/FirebaseConfig';
+
 
 const CreateBlogPage = () => {
+
     const navigate = useNavigate();
-    const [blogs, setBlogs] = useState('');
+    const [blogs, setBlogs] = useState({
+        title: "",
+        category: "",
+        content: "",
+        time: Timestamp.now(),
+    });
     const [thumbnail, setthumbnail] = useState();
     const [text, settext] = useState('');
-    // console.log("Value: ",);
-    // console.log("text: ", text);
-    // console.log(blogs);
     const data = useSelector((state) => state.loginuserdata.value)
 
     useEffect(()=>{
@@ -24,12 +33,79 @@ const CreateBlogPage = () => {
          return  navigate("/login")
         }
       },[])
+
+
+     const handleAddPost = async () => {
+        if (blogs.title === '' || blogs.category === '' || blogs.content === '' || blogs.thumbnail) {
+         return   toast.error('All fields are required', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "dark",
+                // transition: Bounce,
+                });
+        }
+        uploadImage()
+     }
+    
+      
+     const uploadImage = () => {
+        if (!thumbnail) return;
+        const imageRef = ref(storage, `blogimage/${thumbnail.name}`);
+        uploadBytes (imageRef, thumbnail).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                const productRef = collection(fireDb, "blogPost")
+                try {
+                    addDoc(productRef, {
+                        blogs,
+                        thumbnail: url,
+                        time: Timestamp.now(),
+                        date: new Date().toLocaleString(
+                            "en-US",
+                            {
+                                month: "short",
+                                day: "2-digit",
+                                year: "numeric",
+                            }
+                        )
+                    })
+                    navigate('/dashboard')
+                    toast.success('Poast added successfull', {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "dark",
+                        // transition: Bounce,
+                        })
+
+
+                } catch (error) {
+                    toast.error(error)
+                    console.log(error)
+                }
+            });
+        });
+     }
+
+
+
+
+
      // Create markup function ===  html to text convert ===
      function createMarkup(c) {
         return { __html: c };
     }
 
   return (
+    <>
     <div className=' container mx-auto max-w-5xl py-6'>
     <div className="p-5" style={{
         background: 'rgb(226, 232, 240)',
@@ -81,6 +157,8 @@ const CreateBlogPage = () => {
                className='shadow-[inset_0_0_4px_rgba(0,0,0,0.6)] w-full rounded-md p-1.5 placeholder-black outline-none bg-[rgb(226,232,240)]'
                 placeholder="Enter Your Title"
                 name="title"
+                value={blogs.title}
+                onChange={(e)=>setBlogs({...blogs, title: e.target.value})}
             />
         </Div>
 
@@ -91,6 +169,8 @@ const CreateBlogPage = () => {
                 className='shadow-[inset_0_0_4px_rgba(0,0,0,0.6)] w-full rounded-md p-1.5 placeholder-black outline-none bg-[rgb(226,232,240)]'
                 placeholder="Enter Your Category"
                 name="category"
+                value={blogs.category}
+                onChange={(e)=>setBlogs({...blogs, category: e.target.value})}
             />
         </Div>
 
@@ -98,7 +178,7 @@ const CreateBlogPage = () => {
         <Editor
       apiKey='q8h9r4b6jwe51qgwdilccgt7f2kdvexgzg5dty4vmbmlqo1q'
       onEditorChange={(newValue, editor) => {
-        setBlogs({ blogs, content: newValue });
+        setBlogs({ ...blogs, content: newValue });
         settext(editor.getContent({ format: 'text' }));
     }}
     onInit={(evt, editor) => {
@@ -118,7 +198,7 @@ const CreateBlogPage = () => {
       initialValue=""
     />
         {/* Five Submit Button  */}
-        <Button className=" w-full mt-5 bg-[rgb(30,41,59)] text-[rgb(226,232,240)] py-3 rounded-2xl	" text="Send"/>
+        <Button onClick={handleAddPost} className=" w-full mt-5 bg-[rgb(30,41,59)] text-[rgb(226,232,240)] py-3 rounded-2xl	" text="Send"/>
         
         {/* Six Preview Section  */}
           <Div>
@@ -145,7 +225,21 @@ const CreateBlogPage = () => {
 
           </Div>
     </div >
-</div >
+  </div >
+  <ToastContainer
+           position="top-right"
+           autoClose={5000}
+           hideProgressBar={false}
+           newestOnTop={false}
+           closeOnClick
+           rtl={false}
+           pauseOnFocusLoss
+           draggable
+           pauseOnHover
+           theme="dark"
+          //  transition: Bounce,
+        />
+    </>
   )
 }
 
