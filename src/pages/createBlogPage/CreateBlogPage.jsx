@@ -1,21 +1,29 @@
 import { Typography } from '@mui/material';
 import { Editor } from '@tinymce/tinymce-react';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BsFillArrowLeftCircleFill } from "react-icons/bs"
 import { Link } from "react-router-dom";
 import Button from '../../utilities/Button';
 import Heading from '../../utilities/Heading';
 import Div from '../../utilities/Div';
+import { useSelector } from 'react-redux'
+import { useNavigate } from "react-router-dom";
 
 const CreateBlogPage = () => {
-
+    const navigate = useNavigate();
     const [blogs, setBlogs] = useState('');
     const [thumbnail, setthumbnail] = useState();
     const [text, settext] = useState('');
-    console.log("Value: ",);
-    console.log("text: ", text);
-    console.log(blogs);
+    // console.log("Value: ",);
+    // console.log("text: ", text);
+    // console.log(blogs);
+    const data = useSelector((state) => state.loginuserdata.value)
 
+    useEffect(()=>{
+        if(!data){
+         return  navigate("/login")
+        }
+      },[])
      // Create markup function ===  html to text convert ===
      function createMarkup(c) {
         return { __html: c };

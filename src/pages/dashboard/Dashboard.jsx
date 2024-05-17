@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Button from '../../utilities/Button'
 import tec3 from '../../assets/images/tec3.jpg'
@@ -9,19 +9,22 @@ import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
-
-
+import { useSelector, useDispatch } from 'react-redux'
+import { loginuser } from '../../slices/userSlice'
 
 const Dashboard = () => {
     
-   
+    const dispatch = useDispatch();
     const auth = getAuth();
     const user = auth.currentUser
     const navigate = useNavigate();
+    const data = useSelector((state) => state.loginuserdata.value)
+    
 
     let handleLogout = () => {
        signOut(auth).then(()=>{
+        localStorage.removeItem("users")
+        dispatch(loginuser(null))
         toast.success('Logout sucessful', {
             position: "top-right",
             autoClose: 2000,
@@ -39,22 +42,28 @@ const Dashboard = () => {
        })
     }
  
-    // console.log(user);
+    useEffect(()=>{
+      if(!data){
+         navigate("/login")
+      }
+    },[])
+  
+
   
   return (
     <>
     <Div className="py-10">
                 <Div className="flex flex-wrap justify-start items-center lg:justify-center gap-2 lg:gap-10 px-4 lg:px-0 mb-8">
                     <Div className="left">
-                      <Image  className=" w-40 h-40  object-cover rounded-full border-2 border-pink-600 p-1" source={"https://cdn-icons-png.flaticon.com/128/3135/3135715.png"} alt="profile"/>
+                      <Image  className=" w-40 h-40  object-cover rounded-full border-2 border-pink-600 p-1" source={data && data.photoURL} alt="profile"/>
                       {/* <Image  className=" w-40 h-40  object-cover rounded-full border-2 border-pink-600 p-1" source={user && user.
                          photoURL} alt="profile"/> */}
                     </Div>
                     <Div className="right">
-                        <Heading level="2" className='font-bold text-2xl mb-2 text-[black] capitalize'>Jakaria</Heading>
+                        <Heading level="2" className='font-bold text-2xl mb-2 text-[black] capitalize'>{data && data.displayName}</Heading>
                         {/* <Heading level="2" className='font-bold text-2xl mb-2 text-[black] capitalize'>{user && user.displayName}</Heading> */}
                         <Heading level="3" className="font-semibold text-[black] capitalize">Frontend Developer</Heading>
-                        <Heading level="3" className="font-semibold text-[black] lowercase">jakaria.dev242@gmail.com</Heading>
+                        <Heading level="3" className="font-semibold text-[black] lowercase">{data && data.email}</Heading>
                         {/* <Heading level="3" className="font-semibold text-[black] lowercase">{user && user.email}</Heading> */}
                         <Heading level="3"  className="font-semibold text-[black]"><span>Total Blog : </span>  15  </Heading>
                         <Div className=" flex gap-2 mt-2">

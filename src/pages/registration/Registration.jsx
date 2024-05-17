@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import Div from '../../utilities/Div'
 import Input from '../../utilities/Input'
@@ -11,12 +11,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { getDatabase, ref, set } from "firebase/database";
+import { useSelector } from 'react-redux'
 
 const Registration = () => {
 
   const db = getDatabase();
   const auth = getAuth();
   const navigate = useNavigate();
+  const data = useSelector((state) => state.loginuserdata.value)
 
   const initialValues = {
     fullName: '',
@@ -65,6 +67,13 @@ const Registration = () => {
      action.resetForm()
    },
   });
+
+
+  useEffect(()=>{
+    if(data){
+      navigate("/dashboard")
+    }
+  },[])
 
 
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useFormik } from 'formik';
 import { Link } from 'react-router-dom'
 import Div from '../../utilities/Div'
@@ -13,7 +13,8 @@ import { getAuth, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-
+import { useSelector, useDispatch } from 'react-redux'
+import { loginuser } from '../../slices/userSlice';
 
 const style = {
   position: 'absolute',
@@ -32,6 +33,8 @@ const Login = () => {
 
   const auth = getAuth();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.loginuserdata.value)
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -52,7 +55,8 @@ const Login = () => {
           signInWithEmailAndPassword(auth, values.email, values.password)
           .then((userCredential) => {
             if (userCredential.user.emailVerified) {
-              localStorage.setItem("admin", JSON.stringify(userCredential.user))
+              localStorage.setItem("users", JSON.stringify(userCredential.user))
+              dispatch(loginuser(userCredential.user))
               toast.success('Logoin sucessful', {
                 position: "top-right",
                 autoClose: 2000,
@@ -136,6 +140,14 @@ const Login = () => {
     }
     
      }
+
+
+     useEffect(()=>{
+      if(data){
+        navigate("/dashboard")
+      }
+    },[])
+  
 
     
     
