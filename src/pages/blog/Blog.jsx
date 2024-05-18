@@ -2,9 +2,9 @@ import React, { useContext } from 'react'
 import Div from '../../utilities/Div'
 import { TypeAnimation } from 'react-type-animation';
 import BlogPostCard from '../../components/BlogPostCard';
-import tec1 from '../../assets/images/tec1.jpg'
-import tec2 from '../../assets/images/tec2.jpg'
-import tec3 from '../../assets/images/tec3.jpg'
+// import tec1 from '../../assets/images/tec1.jpg'
+// import tec2 from '../../assets/images/tec2.jpg'
+// import tec3 from '../../assets/images/tec3.jpg'
 import Button from '../../utilities/Button';
 import myContext from '../../context/myContext';
 import { useNavigate } from 'react-router-dom';

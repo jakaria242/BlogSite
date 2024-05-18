@@ -13,10 +13,11 @@ import { useSelector, useDispatch } from 'react-redux'
 import { loginuser } from '../../slices/userSlice'
 import myContext from '../../context/myContext'
 
+
 const Dashboard = () => {
     
     const context = useContext(myContext)
-    const { getAllBlog } = context;
+    const { getAllBlog, deleteBlogs } = context;
     // console.log(getAllBlog);
 
     const dispatch = useDispatch();
@@ -24,6 +25,7 @@ const Dashboard = () => {
     const user = auth.currentUser
     const navigate = useNavigate();
     const data = useSelector((state) => state.loginuserdata.value)
+
     
 
     let handleLogout = () => {
@@ -42,7 +44,7 @@ const Dashboard = () => {
             // transition: Bounce,
             });
             setTimeout(()=>{
-                navigate("/login")
+                navigate("/")
             },1000)
        })
     }
@@ -117,7 +119,7 @@ const Dashboard = () => {
                                         <>
                                         {
                                             getAllBlog.map((item, index)=>{
-                                                const {thumbnail, date} = item;
+                                                const {thumbnail, date, id} = item;
                                                 // console.log(item);
                                                 return(
                                                     <tbody key={index}>
@@ -150,8 +152,8 @@ const Dashboard = () => {
                                                         </td>
                 
                                                         {/* Delete Blog  */}
-                                                        <td className="px-6 py-4 text-[black]">
-                                                          <Button className="px-4 py-1 rounded-lg text-white font-bold bg-red-500" text="Delet"/>
+                                                        <td onClick={()=>deleteBlogs(id)} className="px-6 py-4 text-[black]">
+                                                          <Button  className="px-4 py-1 rounded-lg text-white font-bold bg-red-500" text="Delet"/>
                                                         </td>
                 
                                                     </tr>
@@ -161,7 +163,7 @@ const Dashboard = () => {
                                         }
                                         </>
                                         :
-                                        <h2>Not Found</h2>
+                                        <h2 >Not Found</h2>
                                 }
 
                             </table>

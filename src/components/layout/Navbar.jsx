@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { FaUserCircle } from "react-icons/fa";
-import { IoSearch } from "react-icons/io5";
+// import { IoSearch } from "react-icons/io5";
 import Image from '../../utilities/Image';
 import mega1 from '../../assets/images/mega1.jpg'
 import category1 from '../../assets/images/catrgory1.jpg'
@@ -11,30 +11,15 @@ import category4 from '../../assets/images/catrgory4.jpg'
 import Div from '../../utilities/Div';
 import Ul from '../../utilities/Ul';
 import List from '../../utilities/List';
-import { Box, Modal } from '@mui/material';
-import Input from '../../utilities/Input';
 import ShearBlog from '../../pages/shearBlog/ShearBlog';
-import { ImCross } from "react-icons/im";
+import SherchBlog from '../../pages/sherchBlog/SherchBlog';
 
 
-const style = {
-    position: 'absolute',
-    top: '30%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: '#2C3A47',
-    border: '2px solid #000',
-    boxShadow: 24,
-    borderRadius:'20px',
-    p: 4,
-  };
+
 
 const Navbar = () => {
 
-  const [open, setOpen] = useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
     
   return (
     <>
@@ -208,7 +193,8 @@ const Navbar = () => {
         </Div>
         <Div className="flex items-center justify-end gap-[30px]">
             <Div>
-            <IoSearch onClick={handleOpen}  className='text-2xl text-white cursor-pointer hover:text-[yellow] transition-all'/>
+            {/* <IoSearch onClick={handleOpen}  className='text-2xl text-white cursor-pointer hover:text-[yellow] transition-all'/> */}
+            <SherchBlog/>
             </Div>
             <Div>
             {/* <FiShare2 className='text-2xl text-white cursor-pointer hover:text-[yellow] transition-all'/> */}
@@ -221,31 +207,7 @@ const Navbar = () => {
       </Div>
     </nav>
 
-    <Modal
-       open={open}
-       onClose={handleClose}
-       aria-labelledby="modal-modal-title"
-       aria-describedby="modal-modal-description"
-     >
-      <Box sx={style}>
-                <ImCross onClick={()=>setOpen(false)} className='absolute right-[10px] top-[10px] text-white text-xs cursor-pointer	'/>
-           <Div className="flex w-full justify-center">
-            <Input className="bg-[#2C3A47] text-white w-full rounded-3xl" placeholder="Search Here" type="search" name="searchkey"/>
-           </Div>
-           <Div className="flex justify-center flex-wrap -mx-2  mt-4 mb-2 ">
-              <Div className="p-4 flex justify-center mx-auto w-[150px] " >
-                  <Div className=" container text-center mx-auto px-4 bg-gray-200 p-2 rounded-lg ">
-                      {/* Blog Thumbnail  */}
-                        <Image  className="w-full mb-2 rounded-lg" source={'https://img.freepik.com/free-photo/jungle-background-forest-nature-scene-futuristic-generative-ai_191095-515.jpg?t=st=1715614364~exp=1715617964~hmac=7c5c6f11eebe93e1632bb8b9f3f5fbc37e5d4454018ee418c096c7ee8554b5cd&w=740'}  alt="Not Found" />
-                         {/* Blog Date  */}
-                        <p className="">{'Date'}</p>
-                               {/* Blog Title  */}
-                       <h1>{'Title'}</h1>
-                  </Div>
-              </Div>
-          </Div>
-      </Box>
-     </Modal>
+   
     </>
   )
 }

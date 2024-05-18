@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import myContext from './myContext';
-import { collection, onSnapshot, orderBy, query  } from 'firebase/firestore';
+import { collection, onSnapshot, orderBy, query, deleteDoc, doc } from 'firebase/firestore';
 import { fireDb } from '../config/FirebaseConfig';
 
 function MyState({children}) {
@@ -38,6 +38,18 @@ function MyState({children}) {
         getAllBlogs();
     }, []);
 
+
+    // Blog Delete Function 
+    const deleteBlogs = async (id) => {
+        try {
+            await deleteDoc(doc(fireDb, "blogPost", id));
+            getAllBlogs()
+            toast.success("Blogs deleted successfully")
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <myContext.Provider value={{  
             searchkey,
@@ -45,6 +57,7 @@ function MyState({children}) {
             loading,
             setloading,
             getAllBlog,
+            deleteBlogs,
             }}>
             {children}
         </myContext.Provider>
