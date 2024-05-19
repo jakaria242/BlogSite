@@ -96,7 +96,9 @@ const CreateBlogPage = () => {
      }
 
 
-
+     useEffect(() => {
+        window.scrollTo(0, 0)
+ }, [])
 
 
      // Create markup function ===  html to text convert ===

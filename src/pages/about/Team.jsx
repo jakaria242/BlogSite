@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Image from '../../utilities/Image'
 import { FaFacebookF, FaInstagram, FaXTwitter, FaYoutube } from 'react-icons/fa6'
 import Div from '../../utilities/Div'
 
 const Team = ({ source, memberName, description, title }) => {
+    useEffect(() => {
+        window.scrollTo(0, 0)
+ }, [])
     return (
         <Div className='font-primary flex flex-col items-center gap-2'>
             <Image className="h-96 w-full bg-cover object-cover bg-top" source={source} />

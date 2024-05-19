@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Div from '../../utilities/Div'
 import { TypeAnimation } from 'react-type-animation';
 import BlogPostCard from '../../components/BlogPostCard';
@@ -17,6 +17,10 @@ const Blog = () => {
   const context = useContext(myContext)
   const {getAllBlog} = context;
   const navigate = useNavigate()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+}, [])
 
   return (
  <>

@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Box, Modal } from '@mui/material';
 import { IoSearch } from "react-icons/io5";
 import Input from '../../utilities/Input';
@@ -6,6 +6,8 @@ import Div from '../../utilities/Div';
 import Image from '../../utilities/Image';
 import { ImCross } from "react-icons/im";
 import myContext from '../../context/myContext';
+import { useNavigate } from "react-router-dom";
+
 const style = {
     position: 'absolute',
     top: '30%',
@@ -27,9 +29,11 @@ const SherchBlog = () => {
     const handleClose = () => setOpen(false);
     const context = useContext(myContext)
     const {searchkey, setSearchkey, getAllBlog} = context;
+    const navigate = useNavigate();
 
-
-
+    useEffect(() => {
+        window.scrollTo(0, 0)
+ }, [])
     return (
         <>
            <IoSearch onClick={handleOpen}  className='text-2xl text-white cursor-pointer hover:text-[yellow] transition-all'/>
@@ -49,7 +53,7 @@ const SherchBlog = () => {
                 getAllBlog.filter((obj) => obj.blogs.title.toLowerCase().includes(searchkey)).map((item, index)=>{
                          const {thumbnail, date, id} =item
                     return(
-                        <Div key={index} className="p-4 flex justify-center mx-auto w-[150px] " >
+                        <Div onClick={()=>navigate(`/bloginfo/${id}`)} key={index} className="p-4 flex justify-center mx-auto w-[150px] cursor-pointer" >
                         <Div className=" container text-center mx-auto px-4 bg-gray-200 p-2 rounded-lg ">
                             {/* Blog Thumbnail  */}
                               <Image  className="w-full mb-2 rounded-lg" source={thumbnail}  alt="Not Found" />

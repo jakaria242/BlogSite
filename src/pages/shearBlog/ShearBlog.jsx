@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Dialog from '@mui/material/Dialog';
 import { FiShare2 } from "react-icons/fi";
 import Div from '../../utilities/Div';
@@ -23,6 +23,10 @@ const ShearBlog = () => {
     const handleClose = () => {
       setOpen(false);
     };
+
+    useEffect(() => {
+      window.scrollTo(0, 0)
+}, [])
   return (
     <React.Fragment >
         <FiShare2 onClick={handleClickOpen} className='text-2xl text-white cursor-pointer hover:text-[yellow] transition-all'/>

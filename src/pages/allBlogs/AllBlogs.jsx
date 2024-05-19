@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import Div from '../../utilities/Div'
 import Heading from '../../utilities/Heading'
 import tec1 from '../../assets/images/tec1.jpg'
@@ -12,6 +12,10 @@ const AllBlogs = () => {
   const context = useContext(myContext)
   const {getAllBlog} = context
   const navigate = useNavigate()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+}, [])
 
   return (
     <>
